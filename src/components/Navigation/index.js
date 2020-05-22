@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthUserContext } from "../Session";
 import SignOutButton from "../SignOut";
 import * as ROUTES from "../../constants/routes";
+import Landing from "../Landing"
 
 const Navigation = () => (
   <div>
@@ -31,6 +32,7 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
   <ul>
+  <Landing />
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
