@@ -10,40 +10,47 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
-export const mainListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Dashboard" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Reports" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Integrations" />
-    </ListItem>
-  </div>
-);
+function getAlert() {
+  console.log('Hello I am pressed')
+}
+
+export const arr = [{'id':'dashboard','name':"Statistics",'icon':<DashboardIcon />},
+{'id':'orders','name':"Numbers",'icon': <ShoppingCartIcon />}]
+
+// export const mainListItems = (
+//   <div>
+//     <ListItem button >
+//       <ListItemIcon>
+//         <DashboardIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Dashboard" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <ShoppingCartIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Orders" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <PeopleIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Customers" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <BarChartIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Reports" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <LayersIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Integrations" />
+//     </ListItem>
+//   </div>
+// );
 
 export const secondaryListItems = (
   <div>

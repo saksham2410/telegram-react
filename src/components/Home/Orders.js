@@ -21,6 +21,10 @@ const rows = [
   createData(4, '15 Mar, 2019', 'weedninja', 'coitusfirst', '50', 1100),
 ];
 
+const numbers = [
+    createData(0, '91', '7073890734', 'yes', 'peerFlood', 'bool'),
+  ];
+
 function preventDefault(event) {
   event.preventDefault();
 }
@@ -31,22 +35,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Orders() {
-  const classes = useStyles();
-  return (
-    <React.Fragment>
-      <Title>Recent Orders</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Scrap Group</TableCell>
-            <TableCell>Target Group</TableCell>
-            <TableCell>Numbers used</TableCell>
-            <TableCell align="right">Members added</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+export default function Orders(props) {
+  function dataval(number) {  
+  if(number==='Stats')
+  {
+      return(
+    <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell>{row.date}</TableCell>
@@ -56,7 +50,55 @@ export default function Orders() {
               <TableCell align="right">{row.amount}</TableCell>
             </TableRow>
           ))}
-        </TableBody>
+        </TableBody>);
+  }  
+  else{
+      return(
+        <TableBody>
+              {numbers.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell>{row.date}</TableCell>
+                  <TableCell>{row.name}</TableCell>
+                  <TableCell>{row.shipTo}</TableCell>
+                  <TableCell>{row.paymentMethod}</TableCell>
+                  <TableCell align="right">{row.amount}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>);
+  };}
+  function values(number) {  
+    if(number==='Stats')
+    {
+        return(
+            <TableHead>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Scrap Group</TableCell>
+              <TableCell>Target Group</TableCell>
+              <TableCell>Numbers used</TableCell>
+              <TableCell align="right">Members added</TableCell>
+            </TableRow>
+          </TableHead>);
+    }  
+    else{
+        return(
+            <TableHead>
+            <TableRow>
+              <TableCell>Code</TableCell>
+              <TableCell>Number</TableCell>
+              <TableCell>Used</TableCell>
+              <TableCell>Last error</TableCell>
+              <TableCell align="right">Use Again</TableCell>
+            </TableRow>
+          </TableHead>);
+    };}
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <Title>Recent {props.order}</Title>
+      <Table size="small">
+      {values(props.order)}
+        {dataval(props.order)}
       </Table>
       <div className={classes.seeMore}>
         <Link color="primary" href="#" onClick={preventDefault}>

@@ -152,6 +152,7 @@ class SignUpFormBase extends Component {
               color="primary"
               disabled={isInvalid}
               className={classes.submit}
+              onClick={this.onSubmit}
             >
               Sign Up, {username}
             </Button>

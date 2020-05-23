@@ -10,33 +10,32 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
+import { mainListItems, secondaryListItems, arr } from './listItems';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import SignOut from '../SignOut';
-import Orders from './Orders';
+import Dash from './Dash';
+import Scrap from './Scrap';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        Saksham
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
 }
+
 
 const drawerWidth = 240;
 
@@ -114,22 +113,23 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'auto',
     flexDirection: 'column',
   },
-  fixedHeight: {
-    height: 240,
-  },
 }));
 
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [option, setOption] = React.useState('dashboard');
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const optionSelect = (item) => {
+    console.log(item)
+    setOption(item.id)
+};
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -145,7 +145,7 @@ export default function Dashboard() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Telegram - Dashboard
           </Typography>
           <SignOut/>
         </Toolbar>
@@ -163,33 +163,26 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List>{arr.map((item)=> {
+            return (<ListItem button onClick = {
+                ()=> {
+                    optionSelect(item);
+                }
+            }>
+                <ListItemIcon>
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.name} />
+              </ListItem>)
+        })}</List>
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
-          </Grid>
+          {option==='dashboard'?<Dash/>:''}
+          {option==='orders'?<Scrap/>:''}
           <Box pt={4}>
             <Copyright />
           </Box>
