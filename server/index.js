@@ -12,7 +12,7 @@ app.get('/test',() => {
 })
 var string1 = 'python ' + testing_path + '/test.py ' + phone;
 console.log('stringg ',string1);
-shell.exec('python ' + testing_path + '/test.py ' + phone, function (code, stdout, stderr) {
+shell.exec('python ' + testing_path + '/login.py ' + phone, function (code, stdout, stderr) {
     // console.log(result_here);
     var result_here = stdout.split('\n');;
     console.log('python output',result_here)
